@@ -37,6 +37,9 @@ ON `prenotazioni_has_ospiti`.`prenotazione_id` = `prenotazioni`.`id`
 WHERE `prenotazioni`.`created_at` >= "2018-05-01"
 	AND `prenotazioni`.`created_at` <= "2018-05-31";
 ------------------------------------------------------------------------
+
+
+
 ●    Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
 ------------------------------------------------------------------------
 SELECT floor,SUM(pagamenti.price)
@@ -67,5 +70,9 @@ WHERE prenotazioni.id = '7'
 
 ●    Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
 ------------------------------------------------------------------------
-
+SELECT * 
+FROM `stanze` 
+LEFT JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `prenotazioni`.`stanza_id` IS NULL;
 ------------------------------------------------------------------------
